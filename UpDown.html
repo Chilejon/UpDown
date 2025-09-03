@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Up Down</title>
+
+    <style>
+        
+        td {
+            border: 2px solid #4CAF50; /* Green border */
+            padding: 10px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+Card count: <span id="CardCount" style="font-weight: bold;"></span>
+
+<table id="game" style="border: 2px solid black;">
+<tr>
+    <td><div id="Pos1">1</div><div id="Pos1-2">-</div><div id="Pos1-X">&checkmark;</div><button onclick="PosNUp(1)">&uarr;</button><button onclick="PosNDn(1)">&darr;</button></td>
+    <td><div id="Pos2">2</div><div id="Pos2-2">-</div><div id="Pos2-X">&checkmark;</div><button onclick="PosNUp(2)">&uarr;</button><button onclick="PosNDn(2)">&darr;</button></td>
+    <td><div id="Pos3">3</div><div id="Pos3-2">-</div><div id="Pos3-X">&checkmark;</div><button onclick="PosNUp(3)">&uarr;</button><button onclick="PosNDn(3)">&darr;</button></td>
+</tr>
+<tr>
+    <td><div id="Pos4">4</div><div id="Pos4-2">-</div><div id="Pos4-X">&checkmark;</div><button onclick="PosNUp(4)">&uarr;</button><button onclick="PosNDn(4)">&darr;</button></td>
+    <td><div id="Pos5">5</div><div id="Pos5-2">-</div><div id="Pos5-X">&checkmark;</div><button onclick="PosNUp(5)">&uarr;</button><button onclick="PosNDn(5)">&darr;</button></td>
+    <td><div id="Pos6">6</div><div id="Pos6-2">-</div><div id="Pos6-X">&checkmark;</div><button onclick="PosNUp(6)">&uarr;</button><button onclick="PosNDn(6)">&darr;</button></td>
+</tr>
+<tr>
+    <td><div id="Pos7">7</div><div id="Pos7-2">-</div><div id="Pos7-X">&checkmark;</div><button onclick="PosNUp(7)">&uarr;</button><button onclick="PosNDn(7)">&darr;</button></td>
+    <td><div id="Pos8">8</div><div id="Pos8-2">-</div><div id="Pos8-X">&checkmark;</div><button onclick="PosNUp(8)">&uarr;</button><button onclick="PosNDn(8)">&darr;</button></td>
+    <td><div id="Pos9">9</div><div id="Pos9-2">-</div><div id="Pos9-X">&checkmark;</div><button onclick="PosNUp(9)">&uarr;</button><button onclick="PosNDn(9)">&darr;</button></td>
+</tr>
+</table>
+
+<br/>
+<div id="cards"></div>
+
+
+<script src="UpDown.js"></script>
+
+</body>
+</html>
