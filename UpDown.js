@@ -94,7 +94,8 @@ function getCardCount() {
 
 function AddToCardCount() {
   let cardCount = parseInt(document.getElementById("CardCount").innerHTML, 10);
-  document.getElementById("CardCount").innerHTML = cardCount + 1 
+  document.getElementById("CardCount").innerHTML = cardCount + 1
+  document.getElementById("CardsLeft").innerHTML = 52 - cardCount + 1   
 }
 
 function fullCards(deck) {
