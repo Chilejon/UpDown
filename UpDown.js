@@ -3,6 +3,7 @@ const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '
 
 const deck = [];
 //const deck05092025 = [];
+var deadCount = 0
 
 for (const suit of suits) {
   for (const rank of ranks) {
@@ -76,7 +77,8 @@ function PosNUp(boxNumber)
 
   if (getFirstPart(formatUpDownCard(deck[cardCount])) <= getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
   {
-    document.getElementById("Pos"+boxNumber+"-X").innerHTML = "dead"
+    document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
+    deadCount++
   }
   else
   {
@@ -94,7 +96,7 @@ function PosNDn(boxNumber)
 
   if (getFirstPart(formatUpDownCard(deck[cardCount])) >= getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
   {
-    document.getElementById("Pos"+boxNumber+"-X").innerHTML = "dead"
+    document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
   }
   else
   {
@@ -115,7 +117,8 @@ function getCardCount() {
 function AddToCardCount() {
   let cardCount = parseInt(document.getElementById("CardCount").innerHTML, 10);
   document.getElementById("CardCount").innerHTML = cardCount + 1
-  document.getElementById("CardsLeft").innerHTML = 52 - cardCount -1   
+  document.getElementById("CardsLeft").innerHTML = 51 - cardCount
+  checkIfAllDead()   
 }
 
 function fullCards(deck) {
@@ -123,4 +126,13 @@ for (let i = 0; i < 51; i++) {
     const hand = formatUpDownCard(deck[i * 1]);
     console.log(hand + " - ");
     }
+}
+
+function checkIfAllDead()
+{
+  console.log(deadCount)
+  if(deadCount === 9)
+  {
+    document.getElementById("AllDead").innerHTML = "ya dead!"
+  }
 }
