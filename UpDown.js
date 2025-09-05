@@ -79,6 +79,7 @@ function PosNUp(boxNumber)
   {
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
     deadCount++
+    
   }
   else
   {
@@ -97,6 +98,8 @@ function PosNDn(boxNumber)
   if (getFirstPart(formatUpDownCard(deck[cardCount])) >= getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
   {
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
+    deadCount++
+    
   }
   else
   {
