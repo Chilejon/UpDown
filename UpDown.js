@@ -2,6 +2,7 @@ const suits = ['H', 'D', 'C', 'S'];
 const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'];
 
 const deck = [];
+//const deck05092025 = [];
 
 for (const suit of suits) {
   for (const rank of ranks) {
@@ -9,14 +10,33 @@ for (const suit of suits) {
   }
 }
 
-shuffle(deck);
+const seed = dateToSeed(new Date().toISOString().slice(0, 10));
+shuffle(deck, seed);
+console.log(deck)
+
 dealUpDownInitialCards(deck)
 
-function shuffle(array) {
+/* function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+} */
+
+function seededRandom(seed) {
+  let x = Math.sin(seed++) * 10000;
+  return x - Math.floor(x);
+}
+
+function shuffle(array, seed) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(seededRandom(seed + i) * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function dateToSeed(dateString) {
+  return [...dateString].reduce((acc, char) => acc + char.charCodeAt(0), 0);
 }
 
 function formatUpDownCard(card) {
@@ -103,5 +123,4 @@ for (let i = 0; i < 51; i++) {
     const hand = formatUpDownCard(deck[i * 1]);
     console.log(hand + " - ");
     }
-
 }
