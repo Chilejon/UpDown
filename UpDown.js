@@ -65,6 +65,7 @@ function dealUpDownInitialCards(deck) {
     document.getElementById("Pos9").innerHTML = hand9;
 
     document.getElementById("CardCount").innerHTML = 9;
+    document.getElementById("CardsLeft").innerHTML = 43;
 
     //fullCards(deck);
 }
@@ -79,7 +80,8 @@ function PosNUp(boxNumber)
   {
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
     deadCount++
-    
+    document.getElementById("Btn" + boxNumber + "Up").disabled = true;
+    document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
   else
   {
@@ -99,7 +101,8 @@ function PosNDn(boxNumber)
   {
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
     deadCount++
-    
+    document.getElementById("Btn" + boxNumber + "Up").disabled = true;
+    document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
   else
   {
@@ -121,7 +124,8 @@ function AddToCardCount() {
   let cardCount = parseInt(document.getElementById("CardCount").innerHTML, 10);
   document.getElementById("CardCount").innerHTML = cardCount + 1
   document.getElementById("CardsLeft").innerHTML = 51 - cardCount
-  checkIfAllDead()   
+  checkIfAllDead()
+  checkIfOutOfCards()   
 }
 
 function fullCards(deck) {
@@ -136,6 +140,18 @@ function checkIfAllDead()
   console.log(deadCount)
   if(deadCount === 9)
   {
-    document.getElementById("AllDead").innerHTML = "ya dead!"
+    document.getElementById("AllDead").innerHTML = "You lost. &#128542;"
+  }
+}
+
+function checkIfOutOfCards()
+{
+  if(deadCount !== 9)
+  {
+    const cardCount = getCardCount()
+    if (cardCount === 52)
+    {
+      document.getElementById("AllDead").innerHTML = "You won! &#x1F499;"
+    }
   }
 }
