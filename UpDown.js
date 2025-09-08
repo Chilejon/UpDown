@@ -3,7 +3,7 @@ const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '
 
 const deck = [];
 //const deck05092025 = [];
-var deadCount = 0
+var deadCount = [];
 
 for (const suit of suits) {
   for (const rank of ranks) {
@@ -76,10 +76,19 @@ function PosNUp(boxNumber)
   const hand9 = formatUpDownCard(deck[cardCount])   
   document.getElementById("Pos"+boxNumber+"-2").innerHTML = hand9
 
-  if (getFirstPart(formatUpDownCard(deck[cardCount])) <= getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
+  if (getFirstPart(formatUpDownCard(deck[cardCount])) < getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
   {
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
-    deadCount++
+    //deadCount++
+    deadCount.push("&#10060;")
+    document.getElementById("Btn" + boxNumber + "Up").disabled = true;
+    document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
+  }
+  else if (getFirstPart(formatUpDownCard(deck[cardCount])) === getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
+  {
+    document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10134;"
+    //deadCount++
+    deadCount.push("&#10134;")
     document.getElementById("Btn" + boxNumber + "Up").disabled = true;
     document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
@@ -97,10 +106,20 @@ function PosNDn(boxNumber)
   const hand9 = formatUpDownCard(deck[cardCount])   
   document.getElementById("Pos"+boxNumber+"-2").innerHTML = hand9
 
-  if (getFirstPart(formatUpDownCard(deck[cardCount])) >= getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
+  if (getFirstPart(formatUpDownCard(deck[cardCount])) > getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
   {
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
-    deadCount++
+    //deadCount++
+    deadCount.push("&#10060;")
+    document.getElementById("Btn" + boxNumber + "Up").disabled = true;
+    document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
+  }
+  else if (getFirstPart(formatUpDownCard(deck[cardCount])) === getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
+  {
+    document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10134;"
+    //deadCount++
+    //deadCount.push(boxNumber + " " + "&#10134;")
+    deadCount.push("&#10134;")
     document.getElementById("Btn" + boxNumber + "Up").disabled = true;
     document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
@@ -121,6 +140,7 @@ function getCardCount() {
 }
 
 function AddToCardCount() {
+
   let cardCount = parseInt(document.getElementById("CardCount").innerHTML, 10);
   document.getElementById("CardCount").innerHTML = cardCount + 1
   document.getElementById("CardsLeft").innerHTML = 51 - cardCount
@@ -138,20 +158,22 @@ for (let i = 0; i < 51; i++) {
 function checkIfAllDead()
 {
   console.log(deadCount)
-  if(deadCount === 9)
+  if(deadCount.length === 9)
   {
-    document.getElementById("AllDead").innerHTML = "You lost. &#128542;"
+    document.getElementById("game").innerHTML = "";
+    //document.getElementById("AllDead").innerHTML = "You lost. &#128542;"
+    document.getElementById("AllDead").innerHTML = "You lost. &#128542;" + deadCount
   }
 }
 
 function checkIfOutOfCards()
 {
-  if(deadCount !== 9)
+  if(deadCount.length !== 9)
   {
     const cardCount = getCardCount()
     if (cardCount === 52)
     {
-      document.getElementById("AllDead").innerHTML = "You won! &#x1F499;"
+      document.getElementById("AllDead").innerHTML = "You won! &#x1F499;" + deadCount
     }
   }
 }
