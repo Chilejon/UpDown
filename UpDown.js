@@ -74,6 +74,7 @@ function PosNUp(boxNumber)
 {
   const cardCount = getCardCount()
   const hand9 = formatUpDownCard(deck[cardCount])   
+  const handOld = document.getElementById("Pos"+boxNumber).innerHTML
   document.getElementById("Pos"+boxNumber+"-2").innerHTML = hand9
 
   if (getFirstPart(formatUpDownCard(deck[cardCount])) < getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
@@ -81,6 +82,8 @@ function PosNUp(boxNumber)
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
     //deadCount++
     deadCount.push("&#10060;")
+    document.getElementById("Pos"+boxNumber+"-old").innerHTML = "&uarr;" + handOld
+    document.getElementById("Pos"+boxNumber).innerHTML = "-"
     document.getElementById("Btn" + boxNumber + "Up").disabled = true;
     document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
@@ -89,12 +92,17 @@ function PosNUp(boxNumber)
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10134;"
     //deadCount++
     deadCount.push("&#10134;")
+    document.getElementById("Pos"+boxNumber+"-old").innerHTML = "&uarr;" + handOld
+    document.getElementById("Pos"+boxNumber).innerHTML = "-"
     document.getElementById("Btn" + boxNumber + "Up").disabled = true;
     document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
   else
   {
+    document.getElementById("Pos"+boxNumber+"-old").innerHTML = "old:" + handOld
     document.getElementById("Pos"+boxNumber).innerHTML = formatUpDownCard(deck[cardCount])
+    document.getElementById("Pos"+boxNumber+"-2").innerHTML = "-"
+    
   }
 
   AddToCardCount()
@@ -103,7 +111,8 @@ function PosNUp(boxNumber)
 function PosNDn(boxNumber)
 {
   const cardCount = getCardCount()
-  const hand9 = formatUpDownCard(deck[cardCount])   
+  const hand9 = formatUpDownCard(deck[cardCount])
+  const handOld = document.getElementById("Pos"+boxNumber).innerHTML   
   document.getElementById("Pos"+boxNumber+"-2").innerHTML = hand9
 
   if (getFirstPart(formatUpDownCard(deck[cardCount])) > getFirstPart(document.getElementById("Pos"+boxNumber).innerHTML))
@@ -111,6 +120,8 @@ function PosNDn(boxNumber)
     document.getElementById("Pos"+boxNumber+"-X").innerHTML = "&#10060;"
     //deadCount++
     deadCount.push("&#10060;")
+    document.getElementById("Pos"+boxNumber+"-old").innerHTML = "&darr;" +handOld
+    document.getElementById("Pos"+boxNumber).innerHTML = "-"    
     document.getElementById("Btn" + boxNumber + "Up").disabled = true;
     document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
@@ -120,12 +131,16 @@ function PosNDn(boxNumber)
     //deadCount++
     //deadCount.push(boxNumber + " " + "&#10134;")
     deadCount.push("&#10134;")
+    document.getElementById("Pos"+boxNumber+"-old").innerHTML = "&darr;" + handOld
+    document.getElementById("Pos"+boxNumber).innerHTML = "-"
     document.getElementById("Btn" + boxNumber + "Up").disabled = true;
     document.getElementById("Btn" + boxNumber + "Dn").disabled = true;
   }
   else
   {
+    document.getElementById("Pos"+boxNumber+"-old").innerHTML = "old:" + handOld
     document.getElementById("Pos"+boxNumber).innerHTML = formatUpDownCard(deck[cardCount])
+    document.getElementById("Pos"+boxNumber+"-2").innerHTML = "-"
   }
 
   AddToCardCount()
