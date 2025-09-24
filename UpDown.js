@@ -1,5 +1,5 @@
 const suits = ['H', 'D', 'C', 'S'];
-const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'];
+const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']; // J11 Q12 K13 A14
 
 const deck = [];
 //const deck05092025 = [];
@@ -147,7 +147,17 @@ function PosNDn(boxNumber)
 }
 
 function getFirstPart(str) {
-  return parseInt(str.split('-')[0], 10);
+  var number = str.split('-')[0]
+  if (number === 'J')
+    number = 11
+  if (number === 'Q')
+    number = 12
+  if (number === 'K')
+    number = 13
+  if (number === 'A')
+    number = 14
+
+  return parseInt(number, 10);
 }
 
 function getCardCount() {
